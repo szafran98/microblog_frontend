@@ -8,6 +8,11 @@ export default new Vuex.Store({
     posts: []
   },
   mutations: {
+    deletePost(state, postId) {
+      state.posts = state.posts.filter(post => {
+        return post.id !== postId
+      })
+    }
   },
   actions: {
   },

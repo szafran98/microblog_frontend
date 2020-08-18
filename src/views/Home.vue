@@ -28,7 +28,7 @@ export default {
           res.data.forEach(post => {
             this.$store.state.posts.push(post)
           })
-          console.log(this.$store.state.posts)
+          //console.log(this.$store.state.posts)
         })
     }
   },

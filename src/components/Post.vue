@@ -12,7 +12,7 @@
                     {{ post.content }}
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn>
+                    <v-btn @click="deletePost(post.id)">
                         Delete
                     </v-btn>
                 </v-card-actions>
@@ -22,10 +22,20 @@
 </template>
 
 <script>
+    import axios from 'axios';
+    //import { mapState } from 'vuex'
     export default {
         name: "Post",
         props: {
             post: Object
+        },
+        methods: {
+            deletePost(postId) {
+                axios.delete(`http://127.0.0.1:8000/api/posts/${postId}/`)
+                    .then(() => {
+                        this.$store.commit('deletePost', postId)
+                    })
+            }
         }
     }
 </script>
