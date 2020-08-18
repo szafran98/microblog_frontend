@@ -1,18 +1,39 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container>
+    <post
+            v-for="post in $store.state.posts"
+            :key="post.id"
+            v-bind:post="post"
+    ></post>
+  </v-container>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Post from '../components/Post';
+import axios from 'axios';
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Post
+  },
+  data: () => ({
+
+  }),
+  methods: {
+    getAllPosts() {
+      axios.get('http://127.0.0.1:8000/api/posts/')
+        .then(res => {
+          res.data.forEach(post => {
+            this.$store.state.posts.push(post)
+          })
+          console.log(this.$store.state.posts)
+        })
+    }
+  },
+  mounted() {
+    this.getAllPosts()
   }
 }
 </script>
