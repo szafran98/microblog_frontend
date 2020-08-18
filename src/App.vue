@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <navbar></navbar>
     <v-main>
       <router-view></router-view>
     </v-main>
@@ -7,11 +8,13 @@
 </template>
 
 <script>
+  import Navbar from "./components/Navbar";
 
 export default {
   name: 'App',
   // eslint-disable-next-line no-undef
   components: {
+    Navbar,
   },
 
   data: () => ({
