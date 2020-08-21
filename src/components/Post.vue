@@ -39,7 +39,7 @@
                                 justify="end"
                         >
                             <v-icon class="mr-1">mdi-heart</v-icon>
-                            <span class="subheading mr-2">256</span>
+                            <span class="subheading mr-2">{{ post.likes_count }}</span>
                         </v-row>
                     </v-list-item>
                     <!--

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <post
             v-for="post in $store.state.posts"
             :key="post.id"
