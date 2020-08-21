@@ -1,11 +1,13 @@
 <template>
-    <v-row>
-        <v-col align-self="center" cols="6" offset="3">
+    <div style="margin-top: 20px">
+    <v-row style="border-radius: 4px">
+        <v-col align-self="center" cols="6" offset="3" style="padding-bottom: 0">
             <v-card
                     class="mx-auto"
-                    color="#26c6da"
+
                     dark
-                    shaped>
+                    style="border-bottom-left-radius: 0; border-bottom-right-radius: 0"
+                    >
                 <!--
                 <v-card-title>
                     {{ post.post_author.username }}
@@ -49,13 +51,19 @@
             </v-card>
         </v-col>
     </v-row>
+        <comment v-for="comment in post.post_comments" :key="comment.id" :comment="comment"></comment>
+    </div>
 </template>
 
 <script>
     import axios from 'axios';
+    import Comment from "./Comment";
     //import { mapState } from 'vuex'
     export default {
         name: "Post",
+        components: {
+            Comment
+        },
         props: {
             post: Object
         },
@@ -89,10 +97,13 @@
                     return "Less than a minute";
                 }
             }
+
         }
     }
 </script>
 
 <style scoped>
-
+    .padding{
+        padding-bottom: 0;
+    }
 </style>

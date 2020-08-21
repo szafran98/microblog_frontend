@@ -25,10 +25,11 @@ export default {
     getAllPosts() {
       axios.get('http://127.0.0.1:8000/api/posts/')
         .then(res => {
-          res.data.forEach(post => {
-            this.$store.state.posts.push(post)
-          })
-          console.log(this.$store.state.posts)
+          this.$store.state.posts = res.data
+
+          //res.data.forEach(post => {
+          //  this.$store.state.posts.push(post)
+         // })
         })
     }
   },
