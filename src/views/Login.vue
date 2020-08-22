@@ -72,7 +72,9 @@
         methods: {
             login() {
                 axios.post('http://127.0.0.1:8000/auth/', this.loginData)
-                    .then(res => console.log(res))
+                    .then(res => {
+                        document.cookie = `my_cookie_name=${res.data.token}`
+                    })
                     .catch(err => {
                         this.errors = err.response.data.detail
                     })

@@ -1,12 +1,13 @@
 <template>
-    <v-row style="padding-top: 0; padding-bottom: 0">
+    <v-row style="padding-top: 0; padding-bottom: 0;">
         <v-col align-self="center" cols="6" offset="3" style="padding-top: 0; padding-bottom: 0">
             <v-card
                     class="mx-auto"
                     color="#5c5c5c"
                     dark
                     style="border-top-left-radius: 0; border-top-right-radius: 0;
-                            border-bottom-left-radius: 0; border-bottom-right-radius: 0"
+                            border-bottom-left-radius: 0; border-bottom-right-radius: 0;
+                            border-top: 1px solid black"
             >
                 <!--
                 <v-card-title>
@@ -39,7 +40,7 @@
                                 justify="end"
                         >
                             <v-icon class="mr-1">mdi-heart</v-icon>
-                            <span class="subheading mr-2">256</span>
+                            <span class="subheading mr-2">{{ comment.likes_count }}</span>
                         </v-row>
                     </v-list-item>
                     <!--
