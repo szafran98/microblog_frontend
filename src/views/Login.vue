@@ -15,7 +15,7 @@
                                             type="email"
                                             label="E-mail"
                                             :rules="emailRules"
-                                            v-model="loginData.username"
+                                            v-model="loginData.email"
                                             required>
                                     </v-text-field>
                                 </v-col>
@@ -34,7 +34,7 @@
                             </v-row>
                             <v-row justify="center">
                                 <v-col cols="10">
-                                    <p style="color: red">{{ errors }}</p>
+                                    <p style="color: red">{{ $store.state.error }}</p>
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -51,12 +51,12 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    //import axios from 'axios'
     export default {
         name: "Login",
         data: () => ({
             loginData: {
-                username: null,
+                email: null,
                 password: null
             },
             emailRules: [
@@ -70,7 +70,10 @@
             valid: false
         }),
         methods: {
+
             login() {
+                this.$store.dispatch('loginUser', this.loginData)
+                /*
                 axios.post('http://127.0.0.1:8000/auth/', this.loginData)
                     .then(res => {
                         document.cookie = `my_cookie_name=${res.data.token}`
@@ -78,7 +81,11 @@
                     .catch(err => {
                         this.errors = err.response.data.detail
                     })
+
+                 */
             },
+
+
             validate() {
                 this.$refs.form.validate()
             }

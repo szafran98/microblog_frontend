@@ -1,29 +1,22 @@
+const path = require('path')
+
 module.exports = {
   "transpileDependencies": [
     "vuetify"
   ],
+
   configureWebpack: {
     output: {
       libraryExport: 'default'
-    }
+    },
   },
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: [
-            'vue-style-loader',
-            'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              prependData: `
-              @import "@/assets/scss/variables.scss";
-              @import "@/assets/scss/mixins.scss";`
-            }
-          }
-        ]
-      }
-    ]
+
+  pluginOptions: {
+    'style-resources-loader': {
+      preProcessor: 'scss',
+      patterns: [
+          path.resolve(__dirname, './src/scss/*.scss'),
+      ]
+    }
   }
 }

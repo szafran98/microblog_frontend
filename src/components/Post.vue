@@ -102,8 +102,9 @@
     }
 </script>
 
-<style scoped>
-    .padding{
-        padding-bottom: 0;
-    }
+<style lang="scss">
+   .padding {
+       margin-bottom: 0;
+   }
+
 </style>

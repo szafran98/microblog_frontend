@@ -34,7 +34,8 @@ export default {
     }
   },
   mounted() {
-    this.getAllPosts()
+    //this.getAllPosts()
+    this.$store.dispatch('getAllPostsAPI')
   }
 }
 </script>
