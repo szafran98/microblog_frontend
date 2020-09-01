@@ -2,7 +2,7 @@
   <v-app>
     <navbar></navbar>
     <v-main class="main-window">
-      <router-view></router-view>
+        <router-view></router-view>
     </v-main>
   </v-app>
 </template>
@@ -17,7 +17,12 @@ export default {
     Navbar,
   },
   methods: {
-
+    tryGettingUserData() {
+      this.$store.dispatch('tryGettingUserData')
+    }
+  },
+  created() {
+    this.tryGettingUserData()
   },
 
   data: () => ({

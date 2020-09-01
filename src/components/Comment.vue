@@ -64,7 +64,7 @@
             calculatePostTimestamp(timestamp) {
                 let actualTimestampInSec = Date.now() / 1000
                 let seconds = actualTimestampInSec - timestamp
-                console.log(typeof timestamp)
+                //console.log(typeof timestamp)
                 if (seconds > 30 * 24 * 3600) {
                     return Math.floor(seconds / (30 * 24 * 3600)) + " months ago";
                 }

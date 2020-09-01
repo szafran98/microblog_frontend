@@ -7,17 +7,19 @@
 
                     <v-spacer></v-spacer>
 
-                    <v-btn icon>
-                        <v-icon>mdi-bell</v-icon>
-                    </v-btn>
+                    <div v-if="$store.state.loggedUserData">
+                        <v-btn icon>
+                            <v-icon>mdi-bell</v-icon>
+                        </v-btn>
 
-                    <v-btn icon>
-                        <v-icon>mdi-email</v-icon>
-                    </v-btn>
+                        <v-btn icon>
+                            <v-icon>mdi-email</v-icon>
+                        </v-btn>
 
-                    <v-btn icon>
-                        <v-icon>mdi-heart</v-icon>
-                    </v-btn>
+                        <v-btn icon>
+                            <v-icon>mdi-heart</v-icon>
+                        </v-btn>
+                    </div>
 
 
                     <div v-if="searchField">
@@ -39,6 +41,8 @@
                     v-model="drawer"
                     app
                     temporary
+                    expand-on-hover
+                    hide-overlay
             >
                 <v-list
                         nav
@@ -54,26 +58,36 @@
                             <v-list-item-title>Na czasie</v-list-item-title>
                         </v-list-item>
 
-                        <v-list-item>
+                        <v-list-item router-link :to="{ name: 'Home' }">
                             <v-list-item-icon>
-                                <v-icon>mdi-home</v-icon>
+                                <v-icon>mdi-newspaper-variant-outline</v-icon>
                             </v-list-item-icon>
                             <v-list-item-title>Najnowsze</v-list-item-title>
                         </v-list-item>
 
-                        <v-list-item>
+                        <v-list-item v-if="$store.state.loggedUserData">
                             <v-list-item-icon>
                                 <v-icon>mdi-account</v-icon>
                             </v-list-item-icon>
                             <v-list-item-title>Konto</v-list-item-title>
                         </v-list-item>
 
-                        <v-list-item>
-                            <v-list-item-icon>
-                                <v-icon>mdi-home</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-title>Wyloguj</v-list-item-title>
-                        </v-list-item>
+                        <div>
+                            <v-list-item v-if="!$store.state.loggedUserData" router-link :to="{ name: 'Login' }">
+                                <v-list-item-icon>
+                                    <v-icon>mdi-login</v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-title>Login</v-list-item-title>
+                            </v-list-item>
+
+                            <v-list-item v-if="$store.state.loggedUserData" @click="$store.dispatch('logoutUser')">
+                                <v-list-item-icon>
+                                    <v-icon>mdi-login</v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-title>Logout</v-list-item-title>
+                            </v-list-item>
+                        </div>
+
 
                     </v-list-item-group>
                 </v-list>
@@ -86,7 +100,7 @@
         name: "Navbar",
         data: () => ({
             drawer: false,
-            searchField: false
+            searchField: false,
         })
     }
 </script>
