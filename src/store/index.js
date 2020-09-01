@@ -24,7 +24,8 @@ export default new Vuex.Store({
 
         state.posts.forEach(post => {
             if (post.id === postData.id) {
-                post.content = postData.content
+                console.log(state.posts.indexOf(post))
+                Vue.set(state.posts, state.posts.indexOf(post), postData)
             }
         })
       },
