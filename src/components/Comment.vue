@@ -39,7 +39,7 @@
                                 align="center"
                                 justify="end"
                         >
-                            <v-icon class="mr-1">mdi-heart</v-icon>
+                            <v-icon class="mr-1" v-if="$store.state.loggedUserData">mdi-heart</v-icon>
                             <span class="subheading mr-2">{{ comment.likes_count }}</span>
                         </v-row>
                     </v-list-item>

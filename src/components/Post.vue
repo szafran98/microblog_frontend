@@ -46,10 +46,10 @@
                                 align="center"
                                 justify="end"
                         >
-                            <div style="display: grid; text-align: center">
-                                <v-icon class="mr-1" @click="$store.dispatch('deletePost', 'elo')">mdi-heart</v-icon>
+                            <v-btn class="mr-2" icon v-if="$store.state.loggedUserData" @click="likePost(post.id)" style="align-content: center">
+                                <v-icon :class="{ 'post-liked': post.is_liked_by_user }">mdi-heart</v-icon>
+                            </v-btn>
                                 <span class="subheading mr-2">{{ post.likes_count }}</span>
-                            </div>
                             <v-menu bottom right v-if="$store.state.loggedUserData !== null">
                                 <template v-slot:activator="{ on, attrs }">
                                     <v-btn
@@ -144,9 +144,14 @@
             postActions: [],
             showEditForm: false,
             showCommentForm: false,
-            showAllComments: false
+            showAllComments: false,
+            isPostLiked: 'white'
         }),
         methods: {
+            likePost(postId) {
+                this.$store.dispatch('likePostAPI', postId)
+                this.isPostLiked = 'red'
+            },
             editedDone() {
                 this.showEditForm = false
             },
@@ -194,6 +199,12 @@
    .padding {
        margin-bottom: 0;
    }
+    .post-liked {
+        color: red !important;
+    }
+    .post-not-liked {
+        color: white;
+    }
 
 
 </style>

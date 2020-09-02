@@ -86,7 +86,7 @@ export default new Vuex.Store({
     },
   actions: {
     getAllPostsAPI({commit, dispatch}) {
-      axios.get('http://127.0.0.1:8000/api/posts/')
+      axios.get('http://127.0.0.1:8000/api/posts/', TokenService.returnAccessTokenHeader())
           .then(res => commit('storePosts', res.data))
           .catch(err => {
               console.log(err.response)
@@ -128,6 +128,13 @@ export default new Vuex.Store({
             content: postData.content
         }, TokenService.returnAccessTokenHeader())
             .then(res => {
+                commit('updatePost', res.data)
+            })
+      },
+      likePostAPI({commit}, postId) {
+        axios.get(`http://127.0.0.1:8000/api/posts/${postId}/like_post/`, TokenService.returnAccessTokenHeader())
+            .then(res => {
+                console.log(res.data)
                 commit('updatePost', res.data)
             })
       },
