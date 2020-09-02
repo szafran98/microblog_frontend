@@ -16,6 +16,7 @@
               v-bind:post="post"
       ></post>
     </div>
+    <popup></popup>
   </v-container>
 </template>
 
@@ -24,12 +25,14 @@
 import Post from '../components/Post';
 //import axios from 'axios';
 import PostCreation from "../components/PostCreation";
+import Popup from '../components/Popup';
 
 export default {
   name: 'Home',
   components: {
     Post,
-    PostCreation
+    PostCreation,
+    Popup
   },
   data: () => ({
     tag: null

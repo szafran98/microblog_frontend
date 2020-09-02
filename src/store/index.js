@@ -12,7 +12,8 @@ export default new Vuex.Store({
     posts: [],
     error: null,
     tokens: null,
-    loggedUserData: null
+    loggedUserData: null,
+      showPopup: false
   },
   mutations: {
     deletePost(state, postToDel) {
@@ -62,6 +63,9 @@ export default new Vuex.Store({
     },
       removeLoggedUserData(state) {
         state.loggedUserData = null
+      },
+      changePopupState(state, payload) {
+        state.showPopup = payload
       }
   },
     getters: {
@@ -134,7 +138,9 @@ export default new Vuex.Store({
       likePostAPI({commit}, postId) {
         axios.get(`http://127.0.0.1:8000/api/posts/${postId}/like_post/`, TokenService.returnAccessTokenHeader())
             .then(res => {
-                console.log(res.data)
+                if (res.data.message) {
+                    commit('changePopupState', true)
+                }
                 commit('updatePost', res.data)
             })
       },
